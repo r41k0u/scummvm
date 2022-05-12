@@ -918,6 +918,7 @@ Datum Lingo::getTheEntity(int entity, Datum &id, int field) {
 	warning("Lingo::setTheEntity: Attempt to set read-only entity %s", entity2str(entity));
 
 void Lingo::setTheEntity(int entity, Datum &id, int field, Datum &d) {
+	//comment 1
 	if (debugChannelSet(3, kDebugLingoExec)) {
 		debugC(3, kDebugLingoExec, "Lingo::setTheEntity(%s, %s, %s, %s)", entity2str(entity), id.asString(true).c_str(), field2str(field), d.asString(true).c_str());
 	}
