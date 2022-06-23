@@ -712,6 +712,9 @@ void Datum::reset() {
 		case PARRAY:
 			delete u.parr;
 			break;
+		case PICTURE:
+			delete u.img;
+			break;
 		case OBJECT:
 			if (u.obj->getObjType() == kWindowObj) {
 				Window *window = static_cast<Window *>(u.obj);
@@ -872,6 +875,9 @@ Common::String Datum::asString(bool printonly) const {
 	case LOCALREF:
 		s = Common::String::format("local: #%s", u.s->c_str());
 		break;
+	case PICTURE:
+		s = Common::String::format("<5 %08x>", ((uint32)(size_t)((void *)u.img) & 0xffffffff));
+		break;
 	case PROPREF:
 		s = Common::String::format("property: #%s", u.s->c_str());
 		break;
@@ -1014,6 +1020,8 @@ const char *Datum::type2str(bool isk) const {
 		return "GLOBALREF";
 	case LOCALREF:
 		return "LOCALREF";
+	case PICTURE:
+		return isk ? "#picture" : "PICTURE";
 	case PROPREF:
 		return "PROPREF";
 	default:

@@ -27,6 +27,7 @@
 #include "common/str-array.h"
 #include "common/queue.h"
 #include "common/rect.h"
+#include "image/image_decoder.h"
 
 #include "director/types.h"
 
@@ -140,6 +141,7 @@ struct Datum {	/* interpreter stack type */
 		AbstractObject *obj; /* OBJECT */
 		ChunkReference *cref; /* CHUNKREF */
 		CastMemberID *cast;	/* CASTREF, FIELDREF */
+		Image::ImageDecoder *img; /* PICTURE */
 	} u;
 
 	int *refCount;
