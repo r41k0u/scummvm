@@ -128,6 +128,24 @@ struct FArray {
 	FArray(int size) : _sorted(false), arr(size) {}
 };
 
+struct Picture {
+	Image::ImageDecoder *img;
+	Common::Rect *rect;
+	Common::Point *regPoint;
+
+	Picture() {
+		img = nullptr;
+		rect = nullptr;
+		regPoint = nullptr;
+	}
+
+	~Picture() {
+		img = nullptr;
+		delete img;
+		delete rect;
+		delete regPoint;
+	}
+};
 
 struct Datum {	/* interpreter stack type */
 	DatumType type;
@@ -141,7 +159,7 @@ struct Datum {	/* interpreter stack type */
 		AbstractObject *obj; /* OBJECT */
 		ChunkReference *cref; /* CHUNKREF */
 		CastMemberID *cast;	/* CASTREF, FIELDREF */
-		Image::ImageDecoder *img; /* PICTURE */
+		Picture *pict; /* PICTURE */
 	} u;
 
 	int *refCount;

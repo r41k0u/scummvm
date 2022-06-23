@@ -893,7 +893,10 @@ Datum BitmapCastMember::getField(int field) {
 		break;
 	case kThePicture:
 		d.type = PICTURE;
-		d.u.img = _img;
+		d.u.pict = new Picture();
+		d.u.pict->img = _img;
+		d.u.pict->rect = new Common::Rect(_initialRect);
+		d.u.pict->regPoint = new Common::Point(_regX, _regY);
 		break;
 	default:
 		d = CastMember::getField(field);
@@ -918,7 +921,10 @@ bool BitmapCastMember::setField(int field, const Datum &d) {
 			warning("BitmapCastMember::setField(): Wrong DatumType %d for setting the picture property", d.type);
 			return false;
 		}
-		_img = d.u.img;
+		_img = d.u.pict->img;
+		_initialRect = *d.u.pict->rect;
+		_regX = d.u.pict->regPoint->x;
+		_regY = d.u.pict->regPoint->y;
 		_modified = true;
 		return true;
 	default:

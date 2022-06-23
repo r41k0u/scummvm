@@ -713,7 +713,7 @@ void Datum::reset() {
 			delete u.parr;
 			break;
 		case PICTURE:
-			delete u.img;
+			delete u.pict;
 			break;
 		case OBJECT:
 			if (u.obj->getObjType() == kWindowObj) {
@@ -876,7 +876,7 @@ Common::String Datum::asString(bool printonly) const {
 		s = Common::String::format("local: #%s", u.s->c_str());
 		break;
 	case PICTURE:
-		s = Common::String::format("<5 %08x>", ((uint32)(size_t)((void *)u.img) & 0xffffffff));
+		s = Common::String::format("<5 %08x>", ((uint32)(size_t)((void *)u.pict->img) & 0xffffffff));
 		break;
 	case PROPREF:
 		s = Common::String::format("property: #%s", u.s->c_str());
