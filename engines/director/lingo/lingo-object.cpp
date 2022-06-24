@@ -897,6 +897,7 @@ Datum BitmapCastMember::getField(int field) {
 		d.u.pict->img = _img;
 		d.u.pict->rect = new Common::Rect(_initialRect);
 		d.u.pict->regPoint = new Common::Point(_regX, _regY);
+		d.u.pict->disposeAfterUse = false;
 		break;
 	default:
 		d = CastMember::getField(field);

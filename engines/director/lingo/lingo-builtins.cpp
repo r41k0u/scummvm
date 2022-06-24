@@ -1608,9 +1608,12 @@ void LB::b_objectp(int nargs) {
 }
 
 void LB::b_pictureP(int nargs) {
-	g_lingo->pop();
-	warning("STUB: b_pictureP");
-	g_lingo->push(Datum(0));
+	Datum d = g_lingo->pop();
+	if (d.type == PICTURE) {
+		g_lingo->push(1);
+	} else {
+		g_lingo->push(0);
+	}
 }
 
 void LB::b_stringp(int nargs) {

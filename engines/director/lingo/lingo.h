@@ -132,11 +132,13 @@ struct Picture {
 	Image::ImageDecoder *img;
 	Common::Rect *rect;
 	Common::Point *regPoint;
+	bool disposeAfterUse;
 
 	Picture() {
 		img = nullptr;
 		rect = nullptr;
 		regPoint = nullptr;
+		disposeAfterUse = false;
 	}
 
 	~Picture() {
